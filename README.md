@@ -109,7 +109,7 @@ app-gpt/
 
 ## Технологии
 
-- Next.js, React, TypeScript (Frontend)
+- React, TypeScript, React-icons (Frontend)
 - Node.js, Express (Backend)
 - OpenAI API
 - Render, Vercel
