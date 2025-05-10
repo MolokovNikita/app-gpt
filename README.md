@@ -33,6 +33,7 @@ app-gpt/
 ├── backend/ # Серверная часть (API)
 ├── frontend/ # Клиентская часть (Next.js)
 └── README.md
+
 ---
 
 ## Быстрый старт
