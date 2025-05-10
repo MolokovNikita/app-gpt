@@ -5,20 +5,40 @@
     margin: 0 auto;
     font-family: 'Inter', sans-serif;
     width: 100%;
-    // height: 100%;
     align-items: center;
 
 }
 
+.messageCircle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: #1d4d9c;
+}
+
 .heading {
-    font-size: 2.5rem;
+    font-size: 1.4rem;
     font-weight: 600;
     margin-bottom: 10px;
 }
 
 .subheading {
-    font-size: 1.125rem;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+
+}
+
+.askQuestion {
+    font-size: 1rem;
     margin-bottom: 40px;
+    font-weight: 400;
+    width: 330px;
+    color: #8a94a7;
 }
 
 .inputWrapper {
@@ -72,41 +92,69 @@
     white-space: pre-wrap;
 }
 
-@keyframes spinner {
+
+@keyframes pulse {
     0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-.loader {
-    border: 4px solid rgba(255, 255, 255, 0.3);
-    border-top: 4px solid #2c67ff;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    animation: spinner 1s linear infinite;
-    margin-top: 20px;
-}
-
-@keyframes blink {
-
-    0%,
-    100% {
-        opacity: 1;
+        opacity: 0.5;
     }
 
     50% {
+        opacity: 1;
+    }
+
+    100% {
         opacity: 0.5;
     }
 }
 
-.loading-text {
-    color: #2c67ff;
+.skeleton {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.skeletonLine,
+.skeletonLineShort {
+    height: 16px;
+    background-color: #2e3a5e;
+    border-radius: 4px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeletonLine {
+    width: 100%;
+}
+
+.skeletonLineShort {
+    width: 60%;
+}
+
+.error {
+    color: white;
+    font-size: 1rem;
     font-weight: 600;
-    animation: blink 1.5s infinite;
-    margin-top: 20px;
+    width: 330px;
+    margin: 20px auto;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #1c274b;
+    border: 1px solid #1d4d9c;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: #642626;
+
+}
+
+.modelBadge {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 4px 10px;
+    background-color: #1d4d9c;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border-radius: 12px;
+    border: 1px solid #2e3a5e;
 }

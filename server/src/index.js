@@ -25,32 +25,51 @@ const openai = new OpenAI({
 
 app.post('/api/chat', async (req, res) => {
     const { message } = req.body;
-    console.log('Получено сообщение:', message);
 
     if (!message) {
         return res.status(400).json({ error: 'Сообщение не должно быть пустым.' });
     }
 
-    try {
+    const fetchResponse = async (model) => {
         const response = await openai.chat.completions.create({
-            model: 'openai/gpt-3.5-turbo',
+            model,
             messages: [{ role: 'user', content: message }],
-            // max_tokens: 4000, - для gpt-4.0
+            max_tokens: 1000,
         });
+        return response;
+    };
 
-        if (response && response.choices && response.choices.length > 0) {
+    try {
+        const modelPrimary = 'openai/o4-mini';
+        const response = await fetchResponse(modelPrimary);
+
+        if (response && response.choices?.length > 0) {
             const reply = response.choices[0].message?.content;
-            return res.json({ reply });
+            return res.json({ reply, model: modelPrimary });
         } else {
+            throw new Error('Пустой ответ от модели o4-mini.');
+        }
+
+    } catch (error) {
+        console.warn('Ошибка модели o4-mini. Пробуем fallback на gpt-3.5:', error.message);
+
+        try {
+            const modelFallback = 'openai/gpt-3.5-turbo';
+            const fallbackResponse = await fetchResponse(modelFallback);
+
+            if (fallbackResponse && fallbackResponse.choices?.length > 0) {
+                const fallbackReply = fallbackResponse.choices[0].message?.content;
+                return res.json({ reply: fallbackReply, model: modelFallback });
+            } else {
+                throw new Error('Пустой ответ от модели gpt-3.5-turbo.');
+            }
+
+        } catch (fallbackError) {
+            console.error('Ошибка модели gpt-3.5-turbo:', fallbackError.message);
             return res.status(500).json({
-                error: 'Не удалось получить ответ от модели. Ответ от API пуст.',
+                error: fallbackError.message || 'Ошибка при использовании резервной модели.',
             });
         }
-    } catch (error) {
-        console.error('Ошибка API OpenRouter:', error);
-        res.status(500).json({
-            message: error.message || 'Server error',
-        });
     }
 });
 
