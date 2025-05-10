@@ -177,3 +177,18 @@
         padding: 8px 8px;
     }
 }
+
+.notice {
+    font-size: 0.75rem;
+    color: #8a94a7;
+    margin: 0 auto;
+    margin-top: 10px;
+    line-height: 1.4;
+    max-width: 800px;
+
+    .errorText {
+        color: #ff0000;
+        font-weight: 600;
+        font-size: 0.8rem;
+    }
+}
