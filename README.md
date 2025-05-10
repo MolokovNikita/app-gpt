@@ -45,17 +45,17 @@ app-gpt/
     ```
 2. Запустите бэкенд:
     ```
-    cd backend
+    cd server
     npm install
-    npm run dev
+    npm run start
     ```
 3. Запустите фронтенд:
     ```
-    cd ../frontend
+    cd ../client
     npm install
     npm run dev
     ```
-4. Откройте [http://localhost:3000](http://localhost:3000) в браузере.
+4. Откройте [http://localhost:5173](http://localhost:5173) в браузере.
 
 ---
 
@@ -79,7 +79,7 @@ app-gpt/
 
 ### Backend (`backend/.env`)
 
-- `PORT=5000`
+- `PORT=3001`
 - `OPENAI_API_KEY=your_openai_api_key`
 
 ### Frontend (`frontend/.env.local`)
@@ -92,14 +92,14 @@ app-gpt/
 
 ### Backend на Render
 
-- Создайте новый Web Service, укажите папку `backend`
+- Создайте новый Web Service, укажите папку `server`
 - Добавьте переменные окружения
-- Укажите Build Command: `npm install && npm run build`
+- Укажите Build Command: `npm install`
 - Укажите Start Command: `npm run start`
 
 ### Frontend на Vercel
 
-- Импортируйте проект, выберите папку `frontend`
+- Импортируйте проект, выберите папку `client`
 - Укажите переменные окружения
 - Деплой происходит автоматически
 
