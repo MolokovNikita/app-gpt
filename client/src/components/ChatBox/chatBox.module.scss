@@ -56,6 +56,7 @@
     border: none;
     font-size: 1rem;
     outline: none;
+    min-width: 0;
 }
 
 .icon {
@@ -157,4 +158,22 @@
     font-weight: 500;
     border-radius: 12px;
     border: 1px solid #2e3a5e;
+}
+
+@media (max-width: 400px) {
+    .subheading {
+        font-size: 1.5rem;
+    }
+
+    .askQuestion {
+        font-size: 0.9rem;
+    }
+
+    .inputWrapper {
+        padding: 1px 0;
+    }
+
+    .sendButton {
+        padding: 8px 8px;
+    }
 }
