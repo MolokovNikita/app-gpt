@@ -17,6 +17,9 @@ const ChatBox: React.FC = () => {
     const [error, setError] = useState<string>("");
     const [_, setCurrentIndex] = useState<number>(0);
 
+    const API_URL = import.meta.env.VITE_API_URL;
+
+
     useEffect(() => {
         if (loading || !fullResponse) return;
 
@@ -48,7 +51,7 @@ const ChatBox: React.FC = () => {
         setModel("");
 
         try {
-            const res = await fetch("http://localhost:3001/api/chat", {
+            const res = await fetch(`${API_URL}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ message: input }),
